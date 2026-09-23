@@ -43,4 +43,14 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run db:migrate
+      # Generates src/generated/knowledge.json and faq.json, which evals/run.ts imports
+      # transitively. ANTHROPIC_API_KEY is blanked only for this step so build-faq.ts takes its
+      # own "no key" fallback and writes an empty FAQ cache: runTurn() checks that cache first
+      # and returns a free cached answer on a hit, so a *populated* cache here could silently
+      # serve a golden case from cache instead of the live model, corrupting this suite's
+      # pass/fail and cost numbers. The real key is restored (via the job-level env above) for
+      # the eval step itself.
+      - run: npm run generate
+        env:
+          ANTHROPIC_API_KEY: ""
       - run: npm run eval
