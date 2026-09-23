@@ -1,0 +1,46 @@
+name: eval suite
+
+# Costs real money per run (~$0.50-1 as of 2026-09-19), so it runs only when something that could
+# change answer quality actually changed, plus on demand. See PLAN.md section 9 for the gate.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/lib/prompt.ts"
+      - "src/lib/engine/**"
+      - "src/lib/news/**"
+      - "src/lib/redact.ts"
+      - "facts/**"
+      - "evals/**"
+  workflow_dispatch:
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: dangote_ipo_eval
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/dangote_ipo_eval
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run db:migrate
+      - run: npm run eval

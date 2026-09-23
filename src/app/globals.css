@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+/* Eusate brand palette — sampled from the real site and the official logo SVG's own gradient
+   stops (#D7AB07 -> #E86555), not eyeballed from a screenshot. Their actual product UI (the
+   embedded chat widget) is quiet: white is the one primary surface, the brand gold/orange is a
+   single flat accent used sparingly (a button, a small badge), never a wallpaper or a gradient
+   applied to chrome. That is deliberate here too, not an oversight — see PLAN.md's rebrand notes.
+   The accent is light enough that it fails WCAG AA as *text or a fill with light text* on white
+   (~2.6:1 measured either direction). So it's never solid-filled with white text and never used
+   as plain link-text color; it only appears as a soft tint (--accent-soft) with dark --ink text,
+   a border, or an underline stroke — all of which stay legible while keeping white primary. */
+:root {
+  --canvas: #fafaf8;
+  --surface: #ffffff;
+  --ink: #14110e;
+  --muted: #78716c;
+  --line: #e8e6e0;
+  --accent: #e0882e;
+  --accent-ink: #14110e;
+  --accent-soft: #fbe9cb;
+  --warn: #b34324;
+  --warn-soft: #fbe4d8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --canvas: #0b0a08;
+    --surface: #17130f;
+    --ink: #f5f1e8;
+    --muted: #a69c8a;
+    --line: #2c2720;
+    --accent: #e0882e;
+    --accent-ink: #14110e;
+    --accent-soft: #3a2a16;
+    --warn: #f2a387;
+    --warn-soft: #3a1f16;
+  }
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/* Assistant message typography (no typography plugin needed). */
+.chat-md > * + * {
+  margin-top: 0.6rem;
+}
+.chat-md ul,
+.chat-md ol {
+  padding-left: 1.25rem;
+}
+.chat-md ul {
+  list-style: disc;
+}
+.chat-md ol {
+  list-style: decimal;
+}
+.chat-md li + li {
+  margin-top: 0.25rem;
+}
+.chat-md a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 2px;
+}
+.chat-md strong {
+  font-weight: 600;
+}
+.chat-md .cite {
+  margin-left: 1px;
+  padding: 0 3px;
+  border-radius: 4px;
+  background: var(--accent-soft);
+  color: var(--ink);
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+/* Typing indicator. */
+.typing {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px 0;
+}
+.typing span {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--muted);
+  animation: typing 1.2s infinite ease-in-out;
+}
+.typing span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.typing span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes typing {
+  0%,
+  60%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .typing span {
+    animation: none;
+    opacity: 0.6;
+  }
+}

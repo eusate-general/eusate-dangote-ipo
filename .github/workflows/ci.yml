@@ -1,0 +1,45 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: dangote_ipo_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      TEST_DATABASE_URL: postgres://postgres:postgres@localhost:5432/dangote_ipo_test
+      # `npm run build` triggers `prebuild` -> `npm run faq`, which calls getEnv() even when it
+      # ends up skipping generation (no ANTHROPIC_API_KEY here) - getEnv() validates the whole
+      # config including DATABASE_URL, so this must be set for every step, not just the migrate
+      # one below. ANSWER_MODE=mock is belt-and-suspenders: never hit the live model in CI.
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/dangote_ipo_test
+      ANSWER_MODE: mock
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run db:migrate
+      - run: npm test
+      - run: npm run build

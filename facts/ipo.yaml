@@ -1,0 +1,111 @@
+# Canonical IPO facts for the Eusate x Dangote Refinery IPO guide. Edit, merge, deploy.
+#
+# status:      confirmed = a human verified it against a primary source (then set verified_at)
+#              reported  = taken from press reports, NOT yet verified by Eusate
+# The bot works fine with `reported` facts. It labels them and tells users to confirm
+# on the official site. Verifying upgrades them to `confirmed`. See PLAN.md section 5.
+#
+# Seed values collected 2026-09-19 from secondary sources. Verify against the prospectus
+# and https://ipo.dangote.com/ before switching anything to `confirmed`.
+
+issuer: Dangote Petroleum Refinery and Petrochemicals FZE
+official_site: https://ipo.dangote.com/
+
+# Force a phase if timelines change before the dates below are updated.
+# One of: PRE_OPEN, OPEN, CLOSED_AWAITING_ALLOTMENT, ALLOTTED, LISTED. Use null for automatic.
+phase_override: null
+
+offer:
+  price_ngn: 525
+  min_shares: 10
+  shares_offered: 4100000000
+  greenshoe_max_pct: 30
+  gross_proceeds_ngn_approx: 2150000000000
+  status: confirmed
+  verified_at: "2026-09-19"
+  sources:
+    - name: Dangote Petroleum Refinery IPO, official subscribe page
+      url: https://ipo.dangote.com/subscribe
+    - name: Daba IPO tracker (cites SEC Nigeria filings)
+      url: https://dabafinance.com/en/dangote-ipo
+    - name: Vanguard, 10 steps to buy shares for N5,250
+      url: https://www.vanguardngr.com/2026/09/dangote-refinery-ipo-10-steps-to-buy-shares-for-n5250/
+    - name: Nairametrics, what you should know and how to buy
+      url: https://nairametrics.com/2026/09/11/dangote-refinery-ipo-what-you-should-know-and-how-to-buy/
+  note: >-
+    Price (₦525), minimum (10 shares), and shares offered (4.1 billion) were read directly off
+    the official site on 2026-09-19. Gross proceeds (≈₦2.15T) is price × shares and matches
+    exactly. The greenshoe (up to 30% extra) was not seen stated on the official pages checked
+    and remains sourced to press reports only; re-verify it specifically before relying on it.
+    The greenshoe is an extra allocation that may be sold if demand exceeds the base offer.
+
+timeline:
+  opens:
+    date: "2026-09-14"
+    status: confirmed
+    verified_at: "2026-09-19"
+    sources:
+      - name: Dangote Petroleum Refinery IPO, official subscribe page
+        url: https://ipo.dangote.com/subscribe
+      - name: Tribune, how to buy as the IPO opens September 14
+        url: https://tribuneonlineng.com/explainer-how-to-buy-dangote-refinery-shares-as-ipo-opens-september-14/
+      - name: Daba IPO tracker
+        url: https://dabafinance.com/en/dangote-ipo
+  closes:
+    date: "2026-10-13"
+    status: confirmed
+    verified_at: "2026-09-19"
+    sources:
+      - name: Dangote Petroleum Refinery IPO, official subscribe page
+        url: https://ipo.dangote.com/subscribe
+      - name: Daba guide to investing in the Dangote refinery IPO
+        url: https://dabafinance.com/en/insights/how-to-invest-in-the-dangote-refinery-ipo-on-daba-the-complete-guide
+      - name: Technext24, platforms to buy Dangote refinery shares
+        url: https://technext24.com/explainer/18-platforms-to-buy-dangote-refinery-shares/
+    note: >-
+      Confirmed directly on the official site 2026-09-19. One press source (Daba's guide) had
+      mentioned the possibility of an earlier close; the official site showed no such notice as
+      of this check. Platforms may still have their own earlier internal cut-off times.
+  allotment: null
+  listing: null
+  listing_expected_text:
+    text: November 2026 on the Nigerian Exchange (NGX)
+    status: reported
+    verified_at: null
+    sources:
+      - name: Daba IPO tracker
+        url: https://dabafinance.com/en/dangote-ipo
+
+facts:
+  - id: official_channels
+    label: Where to get information and subscribe
+    text: >-
+      The SEC Nigeria circular of 14 September 2026 says applications and payments must
+      go only through officially designated and approved receiving agents and subscription
+      channels, and that investors should get information about the IPO only from SEC
+      official channels, the issuer's official channels, and other official channels set up
+      for the IPO. The official IPO website is ipo.dangote.com. The site itself repeats this:
+      "Stay safe. Subscribe only through approved channels. Only use subscription channels
+      listed on this official website. We will never ask for your PIN, password or OTP."
+    status: confirmed
+    verified_at: "2026-09-19"
+    sources:
+      - name: Dangote Petroleum Refinery IPO, official subscribe page
+        url: https://ipo.dangote.com/subscribe
+      - name: SEC Nigeria circular on the Dangote IPO
+        url: https://sec.gov.ng/for-investors/keep-track-of-circulars/dangote-petroleum-refinery-and-petrochemicals-initial-public-offering/
+  - id: requirements
+    label: What you generally need to subscribe
+    text: >-
+      Investors generally need a BVN and correct bank account details, plus a CSCS
+      account (or stockbroking details) to hold the shares. It has been reported that
+      first-time investors do not necessarily need an existing CSCS number beforehand,
+      because one can be created during subscription after BVN and bank verification.
+      The exact process depends on the platform.
+    status: reported
+    verified_at: null
+    sources:
+      - name: Technext24, platforms to buy Dangote refinery shares
+        url: https://technext24.com/explainer/18-platforms-to-buy-dangote-refinery-shares/
+      - name: Nairametrics, what you should know and how to buy
+        url: https://nairametrics.com/2026/09/11/dangote-refinery-ipo-what-you-should-know-and-how-to-buy/

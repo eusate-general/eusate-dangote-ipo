@@ -1,0 +1,125 @@
+# Platform directory. listing_status:
+#   official   = a human confirmed it on https://ipo.dangote.com/ (set verified_at)
+#   reported   = named as an approved channel by independent press, not yet confirmed
+#   unverified = only the platform itself says so; the bot discusses it only if asked
+#   not_listed = confirmed absent; never recommended
+#
+# Rebuilt 2026-09-19 from a full render of https://ipo.dangote.com/subscribe (the site's "Choose
+# how you want to subscribe" table — its own words: "SEC approved Receiving Agents and Electronic
+# Application Channels"), verified with a headless-browser check. This is the same technique the
+# scheduled primary-source watcher (scripts/watch-primary.ts) uses, so this file is what that
+# watcher's first real run produced, by hand. All 55 official channels are current as of the date
+# below. Offer price, minimum and dates matched facts/ipo.yaml exactly, so those moved to
+# `confirmed` there too. Six previously "reported"/"unverified" platforms are NOT on this official
+# list (Daba included) and are now `not_listed`.
+
+sources:
+  official:
+    name: Dangote Petroleum Refinery IPO, official subscribe page
+    url: https://ipo.dangote.com/subscribe
+  technext:
+    name: Technext24, 18 platforms to buy Dangote refinery shares
+    url: https://technext24.com/explainer/18-platforms-to-buy-dangote-refinery-shares/
+  press_search:
+    name: Press coverage found 2026-09-19 (Legit.ng, Nairametrics, Tribune, Channels TV)
+    url: https://www.legit.ng/business-economy/energy/1729796-dangote-refinery-ipo-full-list-banks-apps-buy-shares/
+  daba:
+    name: Daba guide to investing in the Dangote refinery IPO (10 Sep 2026)
+    url: https://dabafinance.com/en/insights/how-to-invest-in-the-dangote-refinery-ipo-on-daba-the-complete-guide
+
+platforms:
+  # --- Banks ---
+  - { id: access_bank, name: Access Bank, type: bank, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://stocks.accessbankplc.com" }
+  - { id: ecobank, name: Ecobank, type: bank, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://www.ecobank.com/ng/personal-banking" }
+  - { id: fidelity_bank, name: Fidelity Bank, type: bank, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://www.fidelitybank.ng/dangote-ipo/" }
+  - { id: firstbank, name: FirstBank, type: bank, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://firstdirect2.firstbanknigeria.com/dangote-ipo" }
+  - { id: fcmb, name: FCMB, type: bank, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://dipo.fcmb.com/" }
+  - { id: globus_bank, name: Globus Bank, type: bank, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://globusbank.com/" }
+  - { id: gtco, name: GTCO, type: bank, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://dangote-ipo.squadco.com" }
+  - { id: jaiz_bank, name: Jaiz Bank, type: bank, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://publicoffer.jaizbankplc.com" }
+  - { id: lotus_bank, name: Lotus Bank, type: bank, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://www.lotusbank.com" }
+  - { id: keystone_bank, name: Keystone Bank, type: bank, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://www.keystonebankng.com/keystone-bank-dangote-petroleum-refinery-ipo/" }
+  - { id: premiumtrust, name: PremiumTrust Bank, type: bank, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://premiumtrustbank.com/dangoteipo" }
+  - { id: providus_bank, name: Providus Unity, type: bank, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://ngx-offer.providusbank.com/" }
+  - { id: sterling_bank, name: Sterling Bank, type: bank, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://sterling.ng/dangoteipo" }
+  - { id: taj_bank, name: TAJ Bank, type: bank, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://ibank.tajbank.com/login" }
+  - { id: union_bank, name: Union Bank, type: bank, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://uniononline.unionbankng.com/OnlineBanking/" }
+  - { id: uba, name: UBA, type: bank, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://www.ubagroup.com/nigeria/self-service/#dangote-ipo" }
+  - { id: wema_bank, name: Wema Bank (ALAT), type: bank, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://www.alat.ng/" }
+  - { id: zenith_bank, name: Zenith Bank, type: bank, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://www.zenithbank.com" }
+  - { id: vbank, name: VBank, type: bank, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://vbank.ng/", note: "Sponsored by Anchoria Securities Limited." }
+  - id: ecobank_transactional
+    name: Ecobank Transactional Incorporated
+    type: bank
+    listing_status: official
+    named_by: [official]
+    verified_at: "2026-09-19"
+    note: "For eligible African (diaspora) investors. No self-service link; contact Ecobank Transactional Incorporated in the relevant jurisdiction. Sponsored by Ecobank Nigeria Limited."
+
+  # --- Brokers ---
+  - { id: investnaija, name: InvestNaija, type: broker, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://investnaija.com/dangote-refinery-ipo/#subscribe", note: "Chapel Hill Denham Securities Limited." }
+  - { id: vetiva, name: Vetiva Invest, type: broker, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://vetiva-invest.com/" }
+  - { id: afrinvest, name: Afrinvestor, type: broker, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://www.afrinvestor.com/" }
+  - { id: cs_alpha, name: CS Alpha, type: broker, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://app.cardinalstone.com/", note: "CardinalStone." }
+  - { id: coronation_wealth, name: Coronation Wealth, type: broker, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://coronationwealth.ng/" }
+  - { id: first_securities, name: First Securities, type: broker, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://firstinvestipo.first-securities.com" }
+  - { id: advanta_fsdh, name: Advanta, type: broker, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://webapp.fsdhcapital.com/investments/ipo", note: "FSDH Capital." }
+  - { id: futureview_invest, name: FutureView Invest, type: broker, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://invest.futureviewgroup.com" }
+  - { id: meritrade, name: Meritrade, type: broker, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://dangoteipo.meristemng.com/", note: "Meristem." }
+  - { id: morgancapital, name: MorganCapital, type: broker, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://www.morgancapitalgroup.com/" }
+  - { id: tiddo_invest, name: Tiddo Invest, type: broker, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://dprpipo.tiddosecurities.com/", note: "Tiddo Securities." }
+  - { id: zedcrest, name: Zedcrest Wealth, type: broker, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://app.zedcrestwealth.com/register" }
+  - { id: stanbic_ibtc, name: Stanbic IBTC, type: broker, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://brokerage.stanbicibtc.com/offerportal/#/products/initial-public-offering" }
+  - id: sbg_securities
+    name: SBG Securities
+    type: broker
+    listing_status: official
+    named_by: [official]
+    verified_at: "2026-09-19"
+    note: "For eligible African (diaspora) investors, via Stanbic IBTC Stockbrokers Limited. No self-service link; contact SBG Securities (Pty) Limited in the relevant jurisdiction."
+
+  # --- Exchange ---
+  - { id: ngx_invest, name: NGX Invest, type: exchange, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://www.invest.ngxgroup.com/login" }
+
+  # --- Fintech ---
+  - { id: bamboo, name: Bamboo, type: fintech, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://app.investbamboo.com/signup", note: "Sponsored by Lambeth Capital Limited." }
+  - { id: piggyvest, name: PiggyVest, type: fintech, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://www.piggyvest.com", note: "Sponsored by Chapel Hill Denham Securities Limited." }
+  - { id: cowrywise, name: Cowrywise, type: fintech, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://my.cowrywise.com/login", note: "Sponsored by Meristem Stockbrokers Limited." }
+  - { id: ladder, name: Ladder, type: fintech, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://ladder.africa/sign-up", note: "Sponsored by Chapel Hill Denham Securities Limited." }
+  - { id: weyan, name: we.yan, type: fintech, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://www.weyan.app/", note: "Sponsored by Chapel Hill Denham Securities Limited." }
+  - { id: anchoria_app, name: AnchoriaApp, type: fintech, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://app.anchoriaonline.com/" }
+  - { id: bancorp_tradepal, name: Bancorp TradePal, type: fintech, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://www.capitalbancorpngonline.com/Bancorp_TradePal/login" }
+  - { id: investnow, name: InvestNow, type: fintech, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://www.investnow.ng/login" }
+  - { id: i_invest, name: i-Invest, type: fintech, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://www.i-investng.com/ipo" }
+  - { id: sabivest, name: SabiVest, type: fintech, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://marketplace.sabivest.com/" }
+  - { id: myinvestar, name: MyInvestar, type: fintech, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://myinvestar.ng/", note: "Sponsored by First Securities Brokers Limited." }
+  - { id: revve, name: Revve, type: fintech, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://www.revveme.com/", note: "Sponsored by Edgefield Capital Management Limited." }
+
+  # --- Payments ---
+  - { id: flutterwave, name: Flutterwave, type: payments, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://flutterwave.com/ng/", note: "Sponsored by Chapel Hill Denham Securities Limited." }
+  - { id: moniepoint, name: Moniepoint, type: payments, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://teamaptltd.com/", note: "Sponsored by Vetiva Securities Limited." }
+  - { id: paga, name: Paga, type: payments, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://www.mypaga.com/", note: "Sponsored by Chapel Hill Denham Securities Limited." }
+  - { id: payaza, name: Payaza, type: payments, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://dangote.payaza.africa/", note: "Sponsored by Vetiva Securities Limited." }
+  - { id: paystro, name: Paystro, type: payments, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://www.paystro.com/", note: "Sponsored by Meristem Stockbrokers Limited." }
+  - { id: remita, name: Remita, type: payments, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://www.remita.net/" }
+
+  # --- Telco ---
+  - { id: mtn_momo, name: MTN MoMo, type: telco, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://www.momo.ng/", note: "Sponsored by Chapel Hill Denham Securities Limited." }
+  - { id: airtel, name: Airtel SmartCash, type: telco, listing_status: official, named_by: [official], verified_at: "2026-09-19", howto_url: "https://smartcashpsb.ng/", note: "Sponsored by Chapel Hill Denham Securities Limited." }
+
+  # --- Checked against the official list on 2026-09-19 and NOT found there. Never recommend. ---
+  - id: daba
+    name: Daba Finance
+    type: other
+    listing_status: not_listed
+    named_by: [daba, official]
+    verified_at: "2026-09-19"
+    note: >-
+      Daba says its Nigerian access runs through Coronation Merchant Bank and Coronation
+      Securities, but Daba does not appear on the official subscribe-page list of SEC approved
+      Receiving Agents and Electronic Application Channels, checked in full on 2026-09-19.
+  - { id: trove, name: Trove, type: fintech, listing_status: not_listed, named_by: [technext, official], verified_at: "2026-09-19", note: "Named by press coverage; not on the official list checked 2026-09-19." }
+  - { id: sycamore, name: Sycamore, type: fintech, listing_status: not_listed, named_by: [technext, official], verified_at: "2026-09-19", note: "Named by press coverage; not on the official list checked 2026-09-19." }
+  - { id: getequity, name: GetEquity, type: fintech, listing_status: not_listed, named_by: [technext, official], verified_at: "2026-09-19", note: "Named by press coverage; not on the official list checked 2026-09-19." }
+  - { id: hisa, name: Hisa, type: other, listing_status: not_listed, named_by: [technext, official], verified_at: "2026-09-19", note: "Named by press coverage; not on the official list checked 2026-09-19." }
+  - { id: ladda, name: Ladda, type: other, listing_status: not_listed, named_by: [technext, official], verified_at: "2026-09-19", note: "Not to be confused with Ladder, which IS on the official list. Named by press coverage; not on the official list checked 2026-09-19." }

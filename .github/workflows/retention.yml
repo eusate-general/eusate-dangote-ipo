@@ -1,0 +1,22 @@
+name: data retention
+
+# Deletes raw chat content past 30 days (see scripts/retention.ts and PLAN.md section 7b).
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+jobs:
+  retention:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run retention
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
