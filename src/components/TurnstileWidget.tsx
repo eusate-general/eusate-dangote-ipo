@@ -31,7 +31,6 @@ export function TurnstileWidget() {
     const el = containerRef.current;
     widgetId.current = window.turnstile.render(el, {
       sitekey: TURNSTILE_SITE_KEY,
-      size: "invisible",
       "refresh-expired": "auto",
       callback: (token: string) => setTurnstileToken(token),
       "expired-callback": () => setTurnstileToken(null),
